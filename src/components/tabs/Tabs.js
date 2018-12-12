@@ -28,6 +28,7 @@ export default class Tabs extends React.Component {
     const { activeTab } = this.state;
     return (
       <div className="container">
+        <h1 className="pageHeader">Tab Row </h1>
         <div className="tabRow">
           <ul className="nav nav-tabs">
             <li

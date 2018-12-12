@@ -4,7 +4,7 @@ export default class Contact extends React.Component {
   render() {
     return (
       <div className="container">
-        <h1>Contact</h1>
+        <h1 className="pageHeader">Contact</h1>
         <p>Contact us anytime, day or night.</p>
       </div>
     );
