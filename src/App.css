@@ -13,3 +13,38 @@
 .tabRow {
   margin-top: 1em;
 }
+
+/* CARDS */
+
+.orangeBorder {
+  border-color: #ff9933;
+}
+
+.blueBorder {
+  border-color: #0099cc;
+}
+
+.redBorder {
+  border-color: red;
+}
+
+.yellowBorder {
+  border-color: #ffff33;
+}
+
+.greenBorder {
+  border-color: green;
+}
+
+.stationCard {
+  width: 15rem;
+  margin: 2rem;
+}
+
+.minutesBig {
+  font-size: 3rem;
+}
+
+.minutesSmall {
+  font-size: 1.3rem;
+}
