@@ -8,9 +8,10 @@ import moment from "moment";
 import Loader from "../../common/Loader";
 import ErrorPage from "../../common/Error";
 import AddEvent from "./addEvent/AddEvent";
+import { EasyButton } from "../../common/form";
 
 export class TripDetail extends React.Component {
-  state = { trip: null, expandTools: false, confirmDelete: false };
+  state = { trip: null, expandTools: false, confirmDelete: false, toggleAdd: false };
   componentDidMount() {
     let id = this.props.location.pathname;
     id = id.replace("/trip/", "");
@@ -40,7 +41,6 @@ export class TripDetail extends React.Component {
   };
 
   handleAskDelete = e => {
-    //
     e.preventDefault();
     this.setState({ confirmDelete: !this.state.confirmDelete });
     // this.props.deleteTrip();
@@ -53,9 +53,13 @@ export class TripDetail extends React.Component {
     this.setState({ deleted: true });
   };
 
+  toggelAddEvent = () => {
+    this.setState({ toggleAdd: !this.state.toggleAdd });
+  };
+
   render() {
     const { events, error } = this.props;
-    const { trip } = this.state;
+    const { trip, toggleAdd } = this.state;
 
     // Trip was deleted
     // TODO: does not confirm if delete request resolved with 204 vs 400
@@ -90,7 +94,7 @@ export class TripDetail extends React.Component {
           </div>
           <h3>{trip.cities}</h3>
         </div>
-
+        <EditToolbar />
         <ConfirmDeleteBox
           toggleDelete={this.handleAskDelete}
           onDelete={this.handleDelete}
@@ -100,30 +104,47 @@ export class TripDetail extends React.Component {
         {/* NEW LIST GROUP */}
         <ul className="list-group">
           {/* LIST HEADAER */}
-          <ListHeader />
-          <AddEvent />
+          <ListHeader clickCallback={this.toggelAddEvent} active={this.state.toggleAdd} />
+          {toggleAdd && <AddEvent tripid={trip.tripid} name={trip.name} />}
           <EventList events={events} />
         </ul>
-
         {/* OLD LIST OF EVENTS */}
-        {/* <ul class="list-group list-group-flush">
-          {events.map(item => (
-            <LineItem {...item} />
-          ))}
-        </ul> */}
       </div>
     );
   }
 }
 
-const ListHeader = () => {
+const EditToolbar = props => {
+  const test = () => {
+    return "fas fa-trash-alt mutedButton";
+  };
+
+  //   if (!props.expandTools) {
+  //     return (
+  //       <div className="fa-2x">
+  //         <i className="fas fa-cogs mutedButton" />
+  //       </div>
+  //     );
+  //   }
+
+  return (
+    <div className="fa-2x">
+      <i className="fas fa-pencil-alt mutedButton" />
+      <i className="fas fa-trash-alt mutedButton" />
+      {/* <i className={test()} /> */}
+    </div>
+  );
+};
+
+const ListHeader = props => {
   return (
     <li className="list-group-item list-group-item-primary">
       {/* NEW WORKOUT BUTTON */}
       <div className="float-right">
-        <Link className="btn btn-primary" to="workouts/new">
+        {/* <Link className="btn btn-primary" to="workouts/new">
           New Event
-        </Link>
+        </Link> */}
+        <EasyButton text={props.active ? "Cancel" : "Add event"} getInput={props.clickCallback} />
       </div>
       <h2>Events</h2>
     </li>
@@ -134,9 +155,10 @@ const ConfirmDeleteBox = props => {
   // DELETE BUTTON
   if (!props.confirmDelete) {
     return (
-      <button className="btn btn-danger" onClick={props.toggleDelete}>
-        Delete
-      </button>
+      //   <button className="btn btn-danger" onClick={props.toggleDelete}>
+      //     Delete
+      //   </button>
+      <i className="fas fa-trash-alt mutedButton fa-2x" onClick={props.toggleDelete} />
     );
   }
 

@@ -57,3 +57,20 @@
 .activeAddEvent {
   background-color: lightgrey;
 }
+
+.eventTypeIconDiv {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.mutedButton {
+  color: #c4c4c4;
+}
+
+.hoverButton {
+  color: #9e9e9e;
+}
+
+.addNewEventItem {
+  background-color: grey;
+}

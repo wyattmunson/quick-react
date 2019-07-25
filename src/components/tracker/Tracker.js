@@ -62,7 +62,8 @@ const TripList = props => {
           <i className="fas fa-map-marker-alt" /> {props.cities}
         </h6>
         {/* TRIP DATE */}
-        {moment(props.startdate).format("ll")} - {moment(props.enddate).format("ll")}
+        <i className="far fa-calendar-alt" /> {moment(props.startdate).format("ll")} -{" "}
+        {moment(props.enddate).format("ll")}
         {/* <Link to={`/trip/${props.tripid}`} className="btn btn-primary">
           View Trip
         </Link> */}

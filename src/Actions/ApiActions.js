@@ -84,6 +84,22 @@ export function addTrip(payload) {
   };
 }
 
+export function addEvent(payload) {
+  return dispatch => {
+    dispatch({ type: types.CREATE_EVENT.REQUEST });
+    axios
+      .post(ApiEndpoints.event, payload, { headers: headers })
+      .then(function(response) {
+        dispatch({ type: types.CREATE_EVENT.SUCCESS, payload: payload });
+        console.log(response);
+      })
+      .catch(function(error) {
+        dispatch({ type: types.CREATE_EVENT.FAILURE, payload: error });
+        console.log(error);
+      });
+  };
+}
+
 export function deleteTrip(payload) {
   return dispatch => {
     dispatch({ type: types.DELETE_TRIP.REQUEST });

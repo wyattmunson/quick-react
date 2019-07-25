@@ -1,23 +1,39 @@
 import React from "react";
-import { FormField } from "../../../common/form";
+import { Motion, spring } from "react-motion";
+import { connect } from "react-redux";
+import { FormField, DatePicker, SubmitButton } from "../../../common/form";
+import Actions from "../../../../Actions";
 
-export default class AddEvent extends React.Component {
-  state = { active: "flight" };
+class AddEvent extends React.Component {
+  state = { type: "flight", trip: this.props.tripid };
   handleClick = e => {
-    this.setState({ active: e.target.id });
+    this.setState({ type: e.target.id });
   };
 
   checkActive = text => {
-    if (text === this.state.active) {
-      return "col activeAddEvent";
+    if (text === this.state.type) {
+      return "col activeAddEvent eventTypeIconDiv";
     }
-    return "col";
+    return "col eventTypeIconDiv";
+  };
+
+  submitAddEvent = () => {
+    console.log("Submit add event pressed");
+    let payload = this.state;
+    console.log(payload);
+    this.props.addEvent(payload);
+  };
+
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   render() {
     return (
-      <li className="list-group-item">
-        <h2>Add new event</h2>
+      <li className="list-group-item addNewEventItem">
+        <h2>Add new event to {this.props.name}</h2>
         {/* BUTTONS */}
         <div className="row text-center">
           {tripOptions.map(item => (
@@ -28,6 +44,19 @@ export default class AddEvent extends React.Component {
             </div>
           ))}
         </div>
+
+        {/* FORM */}
+        <FormField id="formForEventName" placeholder="SFO > PEK" name="title" getInput={this.onChange} label="Title" />
+        <FormField
+          id="formForEventSubtext"
+          name="subtext"
+          placeholder="Austin, Texas"
+          getInput={this.onChange}
+          label="Subtitle"
+        />
+        <DatePicker if="formStartDate" name="startdate" getInput={this.onChange} label="Start Date" />
+        <DatePicker if="formStartDate" name="enddate" getInput={this.onChange} label="End Date" />
+        <SubmitButton text="Add event" getInput={this.submitAddEvent} />
       </li>
     );
   }
@@ -59,3 +88,22 @@ const tripOptions = [
     text: "meal"
   }
 ];
+
+// const mapStateToProps = state => {
+//     return {
+
+//     }
+// }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addEvent: payload => {
+      dispatch(Actions.addEvent(payload));
+    }
+  };
+};
+
+export default (AddEvent = connect(
+  null,
+  mapDispatchToProps
+)(AddEvent));

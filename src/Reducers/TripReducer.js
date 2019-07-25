@@ -54,6 +54,29 @@ export const TripReducer = (state = defaultState, action) => {
       };
     }
 
+    case "CREATE_EVENT_REQUEST": {
+      return {
+        ...state,
+        fetching: true
+      };
+    }
+
+    case "CREATE_EVENT_SUCCESS": {
+      return {
+        ...state,
+        fetching: false,
+        tripWithEvent: [...state.tripWithEvent, action.payload]
+      };
+    }
+
+    case "CREATE_EVENT_FAILURE": {
+      return {
+        ...state,
+        fetching: false,
+        error: true
+      };
+    }
+
     // DELETE TRIP
     // case "DELETE_TRIP_SUCCESS": {
     //   return {
