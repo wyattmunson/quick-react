@@ -37,8 +37,11 @@ export default class Navheader extends React.Component {
             <Link to="/about" className={this.showActive("/about")}>
               About
             </Link>
-            <Link to="/contact" className={this.showActive("/projects")}>
+            <Link to="/contact" className={this.showActive("/contact")}>
               Contact
+            </Link>
+            <Link to="/tracker" className={this.showActive("/tracker")}>
+              Tracker
             </Link>
           </div>
         </div>

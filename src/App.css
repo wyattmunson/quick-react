@@ -36,4 +36,24 @@
 
 .iconDiv {
   margin-left: 0.4rem;
+  color: grey;
+  text-align: center;
+}
+
+.tripDetailHeader {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.iconPageHeader {
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+}
+
+.stdHeader {
+  margin-top: 4rem;
+}
+
+.activeAddEvent {
+  background-color: lightgrey;
 }
