@@ -1,6 +1,9 @@
 import * as types from "./ActionTypes";
 import * as ApiEndpoints from "./ApiEndpoints";
+import { successAlert, failureAlert } from "./alerts";
 import axios from "axios";
+import Alert from "react-s-alert";
+import "react-s-alert/dist/s-alert-default.css";
 
 export function getUserTrips1() {
   return dispatch => {
@@ -92,10 +95,14 @@ export function addEvent(payload) {
       .then(function(response) {
         dispatch({ type: types.CREATE_EVENT.SUCCESS, payload: payload });
         console.log(response);
+        console.log(payload);
+        successAlert(`Added ${payload.title}`);
       })
       .catch(function(error) {
         dispatch({ type: types.CREATE_EVENT.FAILURE, payload: error });
         console.log(error);
+        // failureAlert(`Added ${payload.title}`);
+        failureAlert(`Added ${error}`);
       });
   };
 }
@@ -107,9 +114,11 @@ export function deleteTrip(payload) {
       .delete(ApiEndpoints.trip, { headers: headers, data: payload })
       .then(function(response) {
         dispatch({ type: types.DELETE_TRIP.SUCCESS, payload: response });
+        successAlert(`Deleted ${payload.title}`);
       })
       .then(function(error) {
         dispatch({ type: types.DELETE_TRIP.FAILURE, payload: error });
+        failureAlert(`Could not delete ${payload.title}`);
       });
   };
 }
@@ -172,6 +181,6 @@ function buildHeader() {
   });
   return (headers = {
     "x-access-token":
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZjgxMzllYi0zYmQwLTQyOGYtYmU0Mi00NGU5MjZhZWMwMWIiLCJpYXQiOjE1NjM4OTM2MDAsImV4cCI6MTU2NDE1MjgwMH0.jtjb4rKXmxUREVe1QJdXnOQodAKEoBoYkIhQyglujdQ"
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZjgxMzllYi0zYmQwLTQyOGYtYmU0Mi00NGU5MjZhZWMwMWIiLCJpYXQiOjE1NjQxNTUzMDIsImV4cCI6MTU2NDQxNDUwMn0.rEBRd5M-UMsum-3F0unF0OA9XbdeE9-6FPrmv23Jr48"
   });
 }

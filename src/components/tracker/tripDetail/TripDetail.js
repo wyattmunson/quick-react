@@ -105,7 +105,7 @@ export class TripDetail extends React.Component {
         <ul className="list-group">
           {/* LIST HEADAER */}
           <ListHeader clickCallback={this.toggelAddEvent} active={this.state.toggleAdd} />
-          {toggleAdd && <AddEvent tripid={trip.tripid} name={trip.name} />}
+          {toggleAdd && <AddEvent tripid={trip.tripid} name={trip.name} cancelButton={this.toggelAddEvent} />}
           <EventList events={events} />
         </ul>
         {/* OLD LIST OF EVENTS */}

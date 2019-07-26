@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Switch, BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 import { Provider } from "react-redux";
+import Alert from "react-s-alert";
 import store from "./store";
 
 import Home from "./components/staticPages/Home";
@@ -22,6 +23,7 @@ class App extends Component {
           <BrowserRouter>
             <div>
               <NavHeader />
+              <Alert stack={{ limit: 3, spacing: 5 }} timeout={5000} />
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/about" component={About} />

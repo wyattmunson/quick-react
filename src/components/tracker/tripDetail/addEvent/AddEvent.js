@@ -1,7 +1,7 @@
 import React from "react";
 import { Motion, spring } from "react-motion";
 import { connect } from "react-redux";
-import { FormField, DatePicker, SubmitButton } from "../../../common/form";
+import { FormField, DatePicker, SubmitButton, EasyButton } from "../../../common/form";
 import Actions from "../../../../Actions";
 
 class AddEvent extends React.Component {
@@ -46,17 +46,26 @@ class AddEvent extends React.Component {
         </div>
 
         {/* FORM */}
-        <FormField id="formForEventName" placeholder="SFO > PEK" name="title" getInput={this.onChange} label="Title" />
-        <FormField
-          id="formForEventSubtext"
-          name="subtext"
-          placeholder="Austin, Texas"
-          getInput={this.onChange}
-          label="Subtitle"
-        />
-        <DatePicker if="formStartDate" name="startdate" getInput={this.onChange} label="Start Date" />
-        <DatePicker if="formStartDate" name="enddate" getInput={this.onChange} label="End Date" />
-        <SubmitButton text="Add event" getInput={this.submitAddEvent} />
+        <form id="addEventForm">
+          <FormField
+            id="formForEventName"
+            placeholder="SFO > PEK"
+            name="title"
+            getInput={this.onChange}
+            label="Title"
+          />
+          <FormField
+            id="formForEventSubtext"
+            name="subtext"
+            placeholder="Austin, Texas"
+            getInput={this.onChange}
+            label="Subtitle"
+          />
+          <DatePicker if="formStartDate" name="startdate" getInput={this.onChange} label="Start Date" />
+          <DatePicker if="formStartDate" name="enddate" getInput={this.onChange} label="End Date" />
+          <SubmitButton text="Add event" getInput={this.submitAddEvent} />
+          <EasyButton text="cancel" getInput={this.props.cancelButton} />
+        </form>
       </li>
     );
   }
