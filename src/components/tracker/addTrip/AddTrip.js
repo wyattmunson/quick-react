@@ -3,6 +3,8 @@ import { FormField, DatePicker, SubmitButton } from "../../common/form";
 import Actions from "../../../Actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import moment from "moment";
+import { failureAlert } from "../../common/alerts";
 
 export class AddTrip extends React.Component {
   state = { name: null, cities: null, startdate: null, enddate: null };
@@ -15,8 +17,21 @@ export class AddTrip extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.addTrip(this.state);
-    this.setState({ redirect: true });
+    this.validateInput(this.state);
+    this.props.addTrip(this.validateInput(this.state));
+    // this.setState({ redirect: true });
+  };
+
+  validateInput = state => {
+    let payload = state;
+    console.log(payload);
+    if (payload.name === null) {
+      failureAlert("Must specify name");
+    }
+    payload.startdate = moment(payload.startdate).format();
+    payload.enddate = moment(payload.enddate).format();
+    console.log(payload);
+    return payload;
   };
 
   render() {

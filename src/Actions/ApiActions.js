@@ -1,6 +1,6 @@
 import * as types from "./ActionTypes";
 import * as ApiEndpoints from "./ApiEndpoints";
-import { successAlert, failureAlert } from "./alerts";
+import { successAlert, failureAlert } from "../components/common/alerts";
 import axios from "axios";
 import Alert from "react-s-alert";
 import "react-s-alert/dist/s-alert-default.css";

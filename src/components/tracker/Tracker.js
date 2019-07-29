@@ -38,9 +38,11 @@ class Tracker extends React.Component {
           </Link>
           <h1>Your trips</h1>
         </div>
-        {trips.map(item => (
-          <TripList {...item} />
-        ))}
+        <div className="row">
+          {trips.map(item => (
+            <TripList {...item} />
+          ))}
+        </div>
       </div>
     );
   }
@@ -81,9 +83,6 @@ const FailedToFetch = props => {
       <button className="btn btn-secondary" onClick={props.refreshCallback}>
         Reload the page
       </button>
-      {/* <button className="btn btn-secondary" onClick={window.location.reload()}>
-        Reload the page
-      </button> */}
     </div>
   );
 };
