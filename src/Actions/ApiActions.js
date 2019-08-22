@@ -169,6 +169,63 @@ export function getEventsByTrip2(id) {
   };
 }
 
+export function getGroups() {
+  let endpoint = ApiEndpoints.getGroups;
+  return dispatch => {
+    dispatch({ type: types.GET_GROUPS.REQUEST });
+
+    fetch(endpoint, {
+      headers: gitlabHeader(),
+      method: "GET"
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw Error;
+        }
+        return res.json();
+      })
+      .then(
+        result => {
+          dispatch({
+            type: types.GET_GROUPS.SUCCESS,
+            payload: result
+          });
+        },
+        error => {
+          dispatch({
+            type: types.GET_GROUPS.FAILURE,
+            payload: error
+          });
+        }
+      );
+  };
+}
+
+export function getProjects(groupId) {
+  // return dispatch => {
+  console.log("API REQUEST FIRED");
+  //
+  let endpoint = ApiEndpoints.getGroups + groupId;
+  return fetch(endpoint, {
+    headers: gitlabHeader(),
+    method: "GET"
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw Error;
+      }
+      return res.json();
+    })
+    .then(
+      result => {
+        return result;
+      },
+      error => {
+        return error;
+      }
+    );
+}
+
 let headers = {
   "x-access-token":
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZjgxMzllYi0zYmQwLTQyOGYtYmU0Mi00NGU5MjZhZWMwMWIiLCJpYXQiOjE1NjM4OTM2MDAsImV4cCI6MTU2NDE1MjgwMH0.jtjb4rKXmxUREVe1QJdXnOQodAKEoBoYkIhQyglujdQ"
@@ -182,5 +239,11 @@ function buildHeader() {
   return (headers = {
     "x-access-token":
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZjgxMzllYi0zYmQwLTQyOGYtYmU0Mi00NGU5MjZhZWMwMWIiLCJpYXQiOjE1NjQxNTUzMDIsImV4cCI6MTU2NDQxNDUwMn0.rEBRd5M-UMsum-3F0unF0OA9XbdeE9-6FPrmv23Jr48"
+  });
+}
+
+function gitlabHeader() {
+  return (headers = {
+    "Private-Token": "y6-2Teesxgge8sWcKQNg"
   });
 }

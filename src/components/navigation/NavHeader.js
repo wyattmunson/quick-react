@@ -43,6 +43,9 @@ export default class Navheader extends React.Component {
             <Link to="/tracker" className={this.showActive("/tracker")}>
               Tracker
             </Link>
+            <Link to="/sentry" className={this.showActive("/sentry")}>
+              Sentry
+            </Link>
           </div>
         </div>
       </nav>

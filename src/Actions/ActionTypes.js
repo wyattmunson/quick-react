@@ -14,5 +14,6 @@ export const GET_EVENT_BY_ID = createRequestTypes("GET_EVENT_BY_ID");
 export const DELETE_TRIP = createRequestTypes("DELETE_TRIP");
 export const DELETE_EVENT = createRequestTypes("DELETE_EVENT");
 export const CREATE_EVENT = createRequestTypes("CREATE_EVENT");
+export const GET_GROUPS = createRequestTypes("GET_GROUPS");
 
 export const CHANGE_TAB_INDEX = "CHANGE_TAB_INDEX";
