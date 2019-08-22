@@ -11,9 +11,7 @@ import Contact from "./components/staticPages/Contact";
 import NotFound404 from "./components/staticPages/NotFound404";
 import NavHeader from "./components/navigation/NavHeader";
 // import Tabs from "./components/tabs/Tabs";
-// import Tracker from "./components/tracker/Tracker";
-import AddTrip from "./components/tracker/addTrip/AddTrip";
-import TripDetail from "./components/tracker/tripDetail/TripDetail";
+
 import SentryDashboard from "./components/sentry/SentryDashboard";
 
 class App extends Component {

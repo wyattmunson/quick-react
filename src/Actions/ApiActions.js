@@ -2,7 +2,7 @@ import * as types from "./ActionTypes";
 import * as ApiEndpoints from "./ApiEndpoints";
 import { successAlert, failureAlert } from "../components/common/alerts";
 import axios from "axios";
-import Alert from "react-s-alert";
+// import Alert from "react-s-alert";
 import "react-s-alert/dist/s-alert-default.css";
 
 export function getUserTrips1() {
@@ -205,25 +205,28 @@ export function getProjects(groupId) {
   // return dispatch => {
   console.log("API REQUEST FIRED");
   //
-  let endpoint = ApiEndpoints.getGroups + groupId;
+  let endpoint = ApiEndpoints.getProjects + groupId;
   return fetch(endpoint, {
     headers: gitlabHeader(),
     method: "GET"
-  })
-    .then(res => {
-      if (!res.ok) {
-        throw Error;
-      }
-      return res.json();
-    })
-    .then(
-      result => {
-        return result;
-      },
-      error => {
-        return error;
-      }
-    );
+  }).then(res => {
+    if (!res.ok) {
+      throw Error;
+    }
+    return res.json();
+  });
+}
+
+export function genericGet(endpoint) {
+  return fetch(endpoint, {
+    headers: gitlabHeader(),
+    method: "GET"
+  }).then(res => {
+    if (!res.ok) {
+      throw Error;
+    }
+    return res.json();
+  });
 }
 
 let headers = {
@@ -232,10 +235,6 @@ let headers = {
 };
 
 function buildHeader() {
-  let options = (headers = {
-    "x-access-token":
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZjgxMzllYi0zYmQwLTQyOGYtYmU0Mi00NGU5MjZhZWMwMWIiLCJpYXQiOjE1NjM4OTM2MDAsImV4cCI6MTU2NDE1MjgwMH0.jtjb4rKXmxUREVe1QJdXnOQodAKEoBoYkIhQyglujdQ"
-  });
   return (headers = {
     "x-access-token":
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZjgxMzllYi0zYmQwLTQyOGYtYmU0Mi00NGU5MjZhZWMwMWIiLCJpYXQiOjE1NjQxNTUzMDIsImV4cCI6MTU2NDQxNDUwMn0.rEBRd5M-UMsum-3F0unF0OA9XbdeE9-6FPrmv23Jr48"

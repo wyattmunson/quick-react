@@ -29,18 +29,6 @@ class SentryDashboard extends React.Component {
   }
 }
 
-const GroupCards = props => {
-  // return <p>test</p>;
-  return props.groupList.map(item => (
-    <div className="card">
-      <div className="card-body">
-        <a href={item.web_url}>{item.name}</a>
-        <small>{item.description}</small>
-      </div>
-    </div>
-  ));
-};
-
 const mapStateToProps = state => {
   return {
     groupList: state.SentryReducer.groupList

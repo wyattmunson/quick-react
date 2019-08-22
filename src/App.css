@@ -77,3 +77,21 @@
 .addNewEventItem {
   background-color: grey;
 }
+/* SENTRY CSS */
+
+/* GROUPS */
+
+.projectCard {
+  width: 15rem;
+  margin-right: 1rem;
+}
+
+.projectCard > img {
+  width: 100%;
+  /* height: 100%;
+  padding: 5%; */
+}
+
+/* .tester {
+  width: 80%;
+} */

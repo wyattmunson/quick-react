@@ -1,10 +1,9 @@
 import React from "react";
 import Actions from "../../../Actions";
 import ApiEndpoints from "../../../Actions/ApiActions";
-import Project from "./Project";
 
-export default class Groups extends React.Component {
-  state = { projects: null };
+export default class Projects extends React.Component {
+  state = { pipeline: null };
   componentDidMount() {
     // this.props.getGroups();
     // Actions.getGroups(this.props.groupList.id);
@@ -21,61 +20,51 @@ export default class Groups extends React.Component {
     //     }
     //     return res.json();
     //   })
-    Actions.getProjects(this.props.groupList.id).then(
+    // Actions.getProjects(this.props.groupList.id).then(
+    //   result => {
+    //     this.setState({ projects: result });
+    //   },
+    //   error => {
+    //     this.setState({ error: true });
+    //   }
+    // );
+    let url = `https://gitlab.com/api/v4/projects/${
+      this.props.details.id
+    }/pipelines`;
+    // let url = ApiEndpoints;
+    Actions.genericGet(url).then(
       result => {
-        this.setState({ projects: result });
+        this.setState({ pipeline: result });
       },
       error => {
-        this.setState({ error: true });
+        this.setState({ error: error });
       }
     );
   }
 
   render() {
-    let { groupList } = this.props;
-    let { projects } = this.state;
-    if (!projects) {
-      return <p>Loading...</p>;
+    let { details } = this.props;
+    let { pipeline } = this.state;
+    // if (!projects) {
+    //   return <p>Loading...</p>;
+    // }
+    if (details === undefined || details === null) {
+      return null;
     }
 
     return (
-      <div className="card">
-        <div className="card-body">
-          <a href={groupList.web_url}>{groupList.name}</a>
-          <small>{groupList.description}</small>
-          <div className="row">
-            {projects.projects.map(item => (
-              <Project details={item} groupId={groupList.id} />
-            ))}
-          </div>
-          <ProjectCard />
+      <div>
+        <div className="card projectCard">
+          <div className="card-body">{details.name}</div>
+          <img
+            className="tester"
+            src={getPipelineBadge(details.path_with_namespace)}
+          />
         </div>
       </div>
     );
   }
 }
-
-const ProjectCard = props => {
-  // if (!props.details.name) {
-  //   return null;
-  // }
-  console.log(props.details);
-  // return null;
-  // return null;
-  return (
-    <div>
-      {props.details && (
-        <div className="card projectCard">
-          <div className="card-body">{props.details.name}</div>
-          <img
-            className="tester"
-            src={getPipelineBadge(props.details.path_with_namespace)}
-          />
-        </div>
-      )}
-    </div>
-  );
-};
 
 const getPipelineBadge = name => {
   return `https://gitlab.com/${name}/badges/master/pipeline.svg`;
