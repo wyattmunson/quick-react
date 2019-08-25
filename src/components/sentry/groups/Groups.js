@@ -35,20 +35,22 @@ export default class Groups extends React.Component {
     let { groupList } = this.props;
     let { projects } = this.state;
     if (!projects) {
-      return <p>Loading...</p>;
+      return <p>Loading GROUPS...</p>;
     }
 
     return (
-      <div className="card">
+      <div className="card groupCard">
         <div className="card-body">
           <a href={groupList.web_url}>{groupList.name}</a>
           <small>{groupList.description}</small>
-          <div className="row">
+
+          <div className="list-group">
             {projects.projects.map(item => (
               <Project details={item} groupId={groupList.id} />
             ))}
           </div>
-          <ProjectCard />
+
+          {/* <ProjectCard /> */}
         </div>
       </div>
     );

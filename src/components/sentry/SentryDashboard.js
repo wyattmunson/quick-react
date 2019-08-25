@@ -11,19 +11,19 @@ class SentryDashboard extends React.Component {
   render() {
     let currentTime = new Date().toLocaleDateString();
     const { groupList } = this.props;
-    if (!this.props.groupList) {
-      return <p>Loading...</p>;
+    if (this.props.groupList.length === 0) {
+      return <p>Loading Sentry...</p>;
     }
 
     return (
-      <div>
+      <div className="container">
         <h1>Sentry: WCF Build Status</h1>
         <small>Refreshed: {currentTime}</small>
-        {groupList.map(item => (
-          <Groups groupList={item} />
-        ))}
+        {/* ECO MODE */}
+        <Groups groupList={groupList[0]} />
 
-        {/* <GroupCards groupList={this.props.groupList} /> */}
+        {/* PROD MODE */}
+        {/* <Groups groupList={groupList} /> */}
       </div>
     );
   }

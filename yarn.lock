@@ -6821,6 +6821,11 @@ obuf@^1.0.0, obuf@^1.1.1:
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
 
+octicons@4.x:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/octicons/-/octicons-4.4.0.tgz#aca3bd32f5dc1d907a8d0de744f78e0c54e19446"
+  integrity sha1-rKO9MvXcHZB6jQ3nRPeODFThlEY=
+
 on-finished@~2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/on-finished/-/on-finished-2.3.0.tgz#20f1336481b083cd75337992a16971aa2d906947"
@@ -7954,7 +7959,7 @@ prompts@^0.1.9:
     kleur "^2.0.1"
     sisteransi "^0.1.1"
 
-prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -8201,6 +8206,19 @@ react-motion@^0.5.2:
     prop-types "^15.5.8"
     raf "^3.1.0"
 
+react-octicon@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-octicon/-/react-octicon-3.0.1.tgz#75250956e6e8d0f4126f5dd2a5864be1ee8a2c63"
+  integrity sha512-OWL6CLI5hUTyS5h1bm2EcIqCxnuDfVBbUd/1VYs2Cqaz7IT24T9jhqaswyWgRWs2axuKY0xMJqR2SYt1BQtkQw==
+  dependencies:
+    octicons "4.x"
+    prop-types "^15.5.7"
+
+react-octicons@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-octicons/-/react-octicons-0.2.0.tgz#50cfcc6a4d3a75c2f8acf116bcbdfdd7e0b01513"
+  integrity sha1-UM/Mak06dcL4rPEWvL391+CwFRM=
+
 react-redux@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.1.0.tgz#72af7cf490a74acdc516ea9c1dd80e25af9ea0b2"
@@ -8244,6 +8262,11 @@ react-s-alert@^1.4.1:
   integrity sha512-+cSpVPe6YeGklhlo7zbVlB0Z6jdiU9HPmEVzp5nIhNm9lvdL7rVO2Jx09pCwT99GmODyoN0iNhbQku6r7six8A==
   dependencies:
     babel-runtime "^6.23.0"
+
+react-score-indicator@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-score-indicator/-/react-score-indicator-2.1.1.tgz#725d04701ad951da22c8101b1abc515e3e62835b"
+  integrity sha512-AzYB/J8xQQvotMjrtlMBfkdOfN0Fgz8hGPU5z9u5KFK57MRLbpLJ+UOjR01bRq596l74o0C6+FxFLX3BS2BLSg==
 
 react-scripts@2.1.1:
   version "2.1.1"

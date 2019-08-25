@@ -13,6 +13,7 @@ import NavHeader from "./components/navigation/NavHeader";
 // import Tabs from "./components/tabs/Tabs";
 
 import SentryDashboard from "./components/sentry/SentryDashboard";
+import Runners from "./components/runners/Runners";
 
 class App extends Component {
   render() {
@@ -29,9 +30,7 @@ class App extends Component {
                 <Route exact path="/contact" component={Contact} />
                 {/* <Route exact path="/tabs" component={Tabs} /> */}
                 <Route exact path="/sentry" component={SentryDashboard} />
-                {/* <Route exact path="/tracker" component={Tracker} /> */}
-                {/* <Route exact path="/trips/add" component={AddTrip} /> */}
-                {/* <Route exact path="/trip/:id" component={TripDetail} /> */}
+                <Route exact path="/runners" component={Runners} />
                 <Route path="*" component={NotFound404} />
               </Switch>
             </div>

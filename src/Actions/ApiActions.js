@@ -201,6 +201,86 @@ export function getGroups() {
   };
 }
 
+export function getRunners() {
+  console.log("runner api action HITTTTTT\n\n");
+  let endpoint = ApiEndpoints.getRunners;
+  return dispatch => {
+    dispatch({ type: types.GET_RUNNERS.REQUEST });
+
+    fetch(endpoint, {
+      headers: gitlabHeader(),
+      method: "GET"
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw Error;
+        }
+        return res.json();
+      })
+      .then(
+        result => {
+          dispatch({
+            type: types.GET_RUNNERS.SUCCESS,
+            payload: result
+          });
+        },
+        error => {
+          dispatch({
+            type: types.GET_RUNNERS.FAILURE,
+            payload: error
+          });
+        }
+      );
+  };
+}
+
+export function getAllJobs(runnerId) {
+  let endpoint = ApiEndpoints.getRunners + runnerId + "/jobs";
+  return dispatch => {
+    dispatch({ type: types.GET_ALL_JOBS.REQUEST });
+    fetch(endpoint, {
+      headers: gitlabHeader(),
+      method: "GET"
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw Error;
+        }
+        return res.json();
+      })
+      .then(
+        result => {
+          dispatch({
+            type: types.GET_ALL_JOBS.SUCCESS,
+            payload: result
+          });
+        },
+        error => {
+          dispatch({
+            type: types.GET_ALL_JOBS.FAILURE,
+            payload: error
+          });
+        }
+      );
+  };
+}
+
+export function getRecentJobs(runnerId) {
+  // return dispatch => {
+  console.log("API REQUEST FIRED");
+  //
+  let endpoint = ApiEndpoints.getRunners + runnerId + "/jobs";
+  return fetch(endpoint, {
+    headers: gitlabHeader(),
+    method: "GET"
+  }).then(res => {
+    if (!res.ok) {
+      throw Error;
+    }
+    return res.json();
+  });
+}
+
 export function getProjects(groupId) {
   // return dispatch => {
   console.log("API REQUEST FIRED");
