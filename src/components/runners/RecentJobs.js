@@ -2,21 +2,25 @@ import React from "react";
 import Actions from "../../Actions";
 import { connect } from "react-redux";
 import Octicon from "react-octicon";
+import { bindActionCreators } from "redux";
 
 class RecentJobs extends React.Component {
   state = { jobs: null };
   componentDidMount() {
-    Actions.getRecentJobs(this.props.runnerId).then(
-      result => {
-        this.setState({ jobs: result });
-      },
-      error => {
-        this.setState({ error: true });
-      }
-    );
+    Actions.getRecentJobs(this.props.runnerId)
+      .then(
+        result => {
+          this.setState({ jobs: result });
+        },
+        error => {
+          this.setState({ error: true });
+        }
+      )
+      .then(Actions.addJobs("test"));
 
     //
-    Actions.getAllJobs(this.props.runnderId);
+    // Actions.getAllJobs(this.props.runnderId);
+    Actions.getRunnersBulk(this.props.runnerId);
     //   .then(Actions.addJobs(this.state.jobs));
   }
 
@@ -150,21 +154,32 @@ const getPipelineBadge = name => {
   return `https://gitlab.com/${name}/badges/master/pipeline.svg`;
 };
 
-// const mapStateToProps = state => {
-//   return {
-//     groupList: state.SentryReducer.groupList
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    groupList: state.SentryReducer.groupList
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    addJobs: input => {
-      dispatch(Actions.addJobs(input));
+    // addJobs: input => {
+    //   dispatch(Actions.addJobs(input));
+    // },
+    getAllJobs: runnerId => {
+      dispatch(Actions.getAllJobs(runnerId));
+    },
+    getRunnersBulk: runnerId => {
+      dispatch(Actions.getRunnersBulk(runnerId));
     }
   };
 };
 
-export default RecentJobs = connect(
-  null,
+// export default RecentJobs = connect(
+//   null,
+//   mapDispatchToProps
+// )(RecentJobs);
+
+export default connect(
+  mapStateToProps,
   mapDispatchToProps
 )(RecentJobs);

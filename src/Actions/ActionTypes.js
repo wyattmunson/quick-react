@@ -16,6 +16,8 @@ export const CREATE_EVENT = createRequestTypes("CREATE_EVENT");
 export const GET_GROUPS = createRequestTypes("GET_GROUPS");
 export const GET_ALL_JOBS = createRequestTypes("GET_ALL_JOBS");
 
+export const GET_RUNNERS_BULK = createRequestTypes("GET_RUNNERS_BULK");
+
 export const GET_RUNNERS = createRequestTypes("GET_RUNNERS");
 
 export const CHANGE_TAB_INDEX = "CHANGE_TAB_INDEX";

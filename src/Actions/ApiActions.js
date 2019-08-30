@@ -234,10 +234,12 @@ export function getRunners() {
   };
 }
 
-export function getAllJobs(runnerId) {
+export function getRunnersBulk(runnerId) {
+  console.log("BULK RUNNER HIT\n\n");
   let endpoint = ApiEndpoints.getRunners + runnerId + "/jobs";
   return dispatch => {
-    dispatch({ type: types.GET_ALL_JOBS.REQUEST });
+    dispatch({ type: types.GET_RUNNERS_BULK.REQUEST });
+
     fetch(endpoint, {
       headers: gitlabHeader(),
       method: "GET"
@@ -251,18 +253,81 @@ export function getAllJobs(runnerId) {
       .then(
         result => {
           dispatch({
-            type: types.GET_ALL_JOBS.SUCCESS,
+            type: types.GET_RUNNERS_BULK.SUCCESS,
             payload: result
           });
         },
         error => {
           dispatch({
-            type: types.GET_ALL_JOBS.FAILURE,
+            type: types.GET_RUNNERS_BULK.FAILURE,
             payload: error
           });
         }
       );
   };
+}
+
+export function getAllJobs(runnerId) {
+  console.log("GET ALL JOBS FIRED\n\n");
+  let endpoint = ApiEndpoints.getRunners;
+  return dispatch => {
+    console.log("\n\nRETURN STATEMENT HIT");
+    dispatch({ type: types.GET_RUNNERS.REQUEST });
+
+    fetch(endpoint, {
+      headers: gitlabHeader(),
+      method: "GET"
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw Error;
+        }
+        return res.json();
+      })
+      .then(
+        result => {
+          dispatch({
+            type: types.GET_RUNNERS.SUCCESS,
+            payload: result
+          });
+        },
+        error => {
+          dispatch({
+            type: types.GET_RUNNERS.FAILURE,
+            payload: error
+          });
+        }
+      );
+  };
+
+  // let endpoint = ApiEndpoints.getRunners + runnerId + "/jobs";
+  // return dispatch => {
+  //   dispatch({ type: types.GET_ALL_JOBS.REQUEST });
+  //   fetch(endpoint, {
+  //     headers: gitlabHeader(),
+  //     method: "GET"
+  //   })
+  //     .then(res => {
+  //       if (!res.ok) {
+  //         throw Error;
+  //       }
+  //       return res.json();
+  //     })
+  //     .then(
+  //       result => {
+  //         dispatch({
+  //           type: types.GET_ALL_JOBS.SUCCESS,
+  //           payload: result
+  //         });
+  //       },
+  //       error => {
+  //         dispatch({
+  //           type: types.GET_ALL_JOBS.FAILURE,
+  //           payload: error
+  //         });
+  //       }
+  //     );
+  // };
 }
 
 export function getRecentJobs(runnerId) {

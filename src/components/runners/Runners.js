@@ -5,18 +5,20 @@ import RecentJobs from "./RecentJobs";
 
 class Runners extends React.Component {
   componentDidMount() {
-    if (this.props.runners.length === 0) {
+    const { runners } = this.props;
+    if (!runners || runners.length === 0) {
+      console.log("FIRED RUNNERS");
       this.props.getRunners();
     }
   }
 
   render() {
     const { runners } = this.props;
-    if (this.props.runners.length === 0) {
+    if (!runners || runners.length === 0) {
       return <i className="fas fa-spinner fa-spin fa-5x center-text" />;
     }
     return (
-      <div>
+      <div className="">
         <h1>Runners</h1>
         <h2>
           {/* Available Runners:{" "} */}
